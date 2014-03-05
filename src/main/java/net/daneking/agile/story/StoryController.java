@@ -25,9 +25,11 @@ public class StoryController {
 
 	@RequestMapping("/{number}")
 	@ResponseBody
-	public HttpEntity<StoryResource> get(@PathVariable("number") final String number) {
-		StoryResource story = storyResourceAssembler.toResource(new Story(number));
-		return new ResponseEntity<StoryResource>(story, HttpStatus.OK);
+	public HttpEntity<StoryResource> get(@PathVariable final String number) {
+		// lookup
+		Story story = new Story(number);
+		StoryResource storyResource = storyResourceAssembler.toResource(story);
+		return new ResponseEntity<StoryResource>(storyResource, HttpStatus.OK);
 	}
 
 	@RequestMapping(method = RequestMethod.POST)
