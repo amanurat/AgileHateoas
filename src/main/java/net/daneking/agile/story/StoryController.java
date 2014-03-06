@@ -3,6 +3,9 @@ package net.daneking.agile.story;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
@@ -42,9 +45,19 @@ public class StoryController {
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 
+	@RequestMapping(value = "/{number}/stories", method = RequestMethod.GET)
+	@ResponseBody
+	public List<StoryResource> getStories(@PathVariable final String number) {
+		List<Story> stories = new ArrayList<Story>();
+		stories.add(new Story("3"));
+		stories.add(new Story("7"));
+		return storyResourceAssembler.toResources(stories);
+	}
+
 	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
 	public String test() {
 		return "It's alive";
 	}
+
 }

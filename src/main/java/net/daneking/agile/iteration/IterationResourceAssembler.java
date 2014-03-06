@@ -1,5 +1,9 @@
 package net.daneking.agile.iteration;
 
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
+import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+import net.daneking.agile.story.StoryController;
+
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import org.springframework.stereotype.Component;
 
@@ -13,7 +17,7 @@ public class IterationResourceAssembler extends ResourceAssemblerSupport<Iterati
 	@Override
 	public IterationResource toResource(final Iteration iteration) {
 		IterationResource resource = createResourceWithId(iteration.getNumber(), iteration);
-		// link stories after create get all stories by iteration
+		resource.add(linkTo(methodOn(StoryController.class).getStories(iteration.getNumber())).withRel("stories"));
 		return resource;
 
 	}

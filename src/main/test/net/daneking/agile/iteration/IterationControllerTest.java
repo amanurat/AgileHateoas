@@ -36,6 +36,16 @@ public class IterationControllerTest {
 
 	}
 
+	/*
+	 * @Test public void shouldReturnStoriesWhenGetStoriesIsCalled() {
+	 * setupIterationAssembler(); List<StoryResource> response =
+	 * IterationController.getStories("5"); ArrayList<StoryResource> storyList =
+	 * new ArrayList<StoryResource>(); assertThat(response, contains(new
+	 * StoryResource()));
+	 * verify(IterationResourceAssembler).toResource(isA(Iteration.class));
+	 * 
+	 * }
+	 */
 	private void setupIterationAssembler() {
 		when(IterationResourceAssembler.toResource(isA(Iteration.class))).thenReturn(createMockIterationResource());
 	}
