@@ -17,9 +17,9 @@ public class IterationResourceAssembler extends ResourceAssemblerSupport<Iterati
 	@Override
 	public IterationResource toResource(final Iteration iteration) {
 		IterationResource resource = createResourceWithId(iteration.getNumber(), iteration);
-		resource.add(linkTo(methodOn(StoryController.class).getStories(iteration.getNumber())).withRel("stories"));
+
+		resource.add(linkTo(methodOn(StoryController.class).findStories(iteration.getNumber())).withRel("stories"));
 		return resource;
 
 	}
-
 }

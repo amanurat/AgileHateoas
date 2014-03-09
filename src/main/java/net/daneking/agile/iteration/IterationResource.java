@@ -3,13 +3,13 @@ package net.daneking.agile.iteration;
 import org.springframework.hateoas.ResourceSupport;
 
 public class IterationResource extends ResourceSupport {
-	private String number;
+	private Integer number;
 
-	public String getNumber() {
+	public Integer getNumber() {
 		return number;
 	}
 
-	public void setNumber(final String number) {
+	public void setNumber(final Integer number) {
 		this.number = number;
 	}
 

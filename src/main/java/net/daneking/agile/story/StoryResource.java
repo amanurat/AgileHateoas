@@ -5,7 +5,7 @@ import org.springframework.hateoas.ResourceSupport;
 
 public class StoryResource extends ResourceSupport {
 	private String name;
-	private String number;
+	private Integer number;
 
 	public String getName() {
 		return name;
@@ -15,11 +15,11 @@ public class StoryResource extends ResourceSupport {
 		this.name = name;
 	}
 
-	public String getNumber() {
+	public Integer getNumber() {
 		return number;
 	}
 
-	public void setNumber(final String number) {
+	public void setNumber(final Integer number) {
 		this.number = number;
 	}
 

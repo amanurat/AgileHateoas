@@ -16,8 +16,8 @@ public class StoryResourceAssembler extends ResourceAssemblerSupport<Story, Stor
 
 	@Override
 	public StoryResource toResource(final Story story) {
-		StoryResource resource = createResourceWithId(story.getNumber(), story);
-		resource.add(linkTo(methodOn(IterationController.class).get("2")).withRel("iteration"));
+		StoryResource resource = createResourceWithId(story.getNumber(), story, story.getNumber());
+		resource.add(linkTo(methodOn(IterationController.class).findByStory(story.getNumber())).withRel("iteration"));
 		return resource;
 	}
 

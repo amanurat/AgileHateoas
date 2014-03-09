@@ -8,7 +8,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.client.RestTemplate;
 
-public class StoryControllerFunctionalTest {
+public class StoryFunctionalTest {
 	private static final String BASE_URI = "http://localhost:8080/AgileHateoas";
 
 	@Test
@@ -16,7 +16,7 @@ public class StoryControllerFunctionalTest {
 		RestTemplate restTemplate = new RestTemplate();
 		StoryResource storyResource = new StoryResource();
 		storyResource.setName("dddd");
-		storyResource.setNumber("2");
+		storyResource.setNumber(2);
 		ResponseEntity<Void> response = restTemplate.postForEntity(BASE_URI + "/story", storyResource, Void.class);
 		assertEquals(HttpStatus.CREATED, response.getStatusCode());
 	}

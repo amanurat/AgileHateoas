@@ -1,13 +1,13 @@
 package net.daneking.agile.iteration;
 
 public class Iteration {
-	private final String number;
+	private final Integer number;
 
-	public Iteration(final String number) {
+	public Iteration(final Integer number) {
 		this.number = number;
 	}
 
-	public String getNumber() {
+	public Integer getNumber() {
 		return number;
 	}
 

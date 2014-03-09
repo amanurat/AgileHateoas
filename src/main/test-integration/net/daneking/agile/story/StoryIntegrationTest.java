@@ -23,7 +23,7 @@ import org.springframework.web.client.RestTemplate;
 @RunWith(SpringJUnit4ClassRunner.class)
 @WebAppConfiguration
 @ContextConfiguration(classes = { SpringConfig.class, AppInitializer.class })
-public class StoryControllerIntegrationTest {
+public class StoryIntegrationTest {
 	private RestTemplate restTemplate;
 
 	private MockRestServiceServer mockServer;
@@ -43,7 +43,7 @@ public class StoryControllerIntegrationTest {
 				.andRespond(withSuccess("{\"name\":\"Story-5\",\"number\":\"5\" }", MediaType.APPLICATION_JSON));
 		ResponseEntity<StoryResource> response = restTemplate.getForEntity("/story/5", StoryResource.class);
 		StoryResource body = response.getBody();
-		assertEquals(body.getNumber(), "5");
+		assertEquals(body.getNumber(), Integer.valueOf(5));
 		mockServer.verify();
 
 	}

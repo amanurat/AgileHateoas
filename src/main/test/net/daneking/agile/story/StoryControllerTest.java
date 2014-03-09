@@ -6,6 +6,8 @@ import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.mockito.InjectMocks;
@@ -17,32 +19,45 @@ import org.springframework.test.context.ContextConfiguration;
 @ContextConfiguration
 public class StoryControllerTest {
 	@Mock
-	StoryResourceAssembler storyResourceAssembler;
+	StoryResource resource;
+
+	@Mock
+	StoryRepository repository;
+
+	@Mock
+	List<StoryResource> resources;
+
+	@Mock
+	StoryResourceAssembler resourceAssembler;
 
 	@InjectMocks
-	private StoryController storyController;
+	private StoryController controller;
 
 	@Before
 	public void setUp() {
 		MockitoAnnotations.initMocks(this);
+		setupStoryAssembler();
+
 	}
 
 	@Test
 	public void shouldReturnStoryResourceWhenGetIsCalled() {
-		setupStoryAssembler();
-		HttpEntity<StoryResource> response = storyController.get("5");
-		assertThat(response.getBody(), equalTo(createMockStoryResource()));
-		verify(storyResourceAssembler).toResource(isA(Story.class));
+		setupStoryCreationMock(5);
+		HttpEntity<StoryResource> response = controller.get(5);
+		assertThat(response.getBody().getNumber(), equalTo(Integer.valueOf(5)));
+		verify(resourceAssembler).toResource(isA(Story.class));
+		verify(repository).findById(isA(Integer.class));
 
 	}
 
 	private void setupStoryAssembler() {
-		when(storyResourceAssembler.toResource(isA(Story.class))).thenReturn(createMockStoryResource());
+		when(resourceAssembler.toResource(isA(Story.class))).thenReturn(resource);
+
 	}
 
-	private StoryResource createMockStoryResource() {
-		StoryResource storyResource = new StoryResource();
-		storyResource.setNumber("6");
-		return storyResource;
+	private void setupStoryCreationMock(final Integer number) {
+		when(resource.getNumber()).thenReturn(number);
+		when(repository.findById(isA(Integer.class))).thenReturn(new Story(number + 2));
+
 	}
 }

@@ -3,7 +3,6 @@ package net.daneking.agile.story;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
-import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,18 +18,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/story")
 public class StoryController {
 	@Autowired
 	private StoryResourceAssembler storyResourceAssembler;
+	@Autowired
+	StoryRepository repository;
 
-	private static final String TEMPLATE = "Story - %s!";
-
-	@RequestMapping("/{number}")
+	@RequestMapping("story/{number}")
 	@ResponseBody
-	public HttpEntity<StoryResource> get(@PathVariable final String number) {
+	public HttpEntity<StoryResource> get(@PathVariable final Integer number) {
 		// lookup
-		Story story = new Story(number);
+		Story story = repository.findById(number);
 		StoryResource storyResource = storyResourceAssembler.toResource(story);
 		return new ResponseEntity<StoryResource>(storyResource, HttpStatus.OK);
 	}
@@ -39,25 +37,15 @@ public class StoryController {
 	@ResponseBody
 	public ResponseEntity<Void> create(@RequestBody final StoryResource story) {
 		// save
-
 		HttpHeaders headers = new HttpHeaders();
 		headers.setLocation(linkTo(methodOn(getClass()).get(story.getNumber())).toUri());
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/{number}/stories", method = RequestMethod.GET)
+	@RequestMapping(value = "/iteration/{iterationNumber}/stories", method = RequestMethod.GET)
 	@ResponseBody
-	public List<StoryResource> getStories(@PathVariable final String number) {
-		List<Story> stories = new ArrayList<Story>();
-		stories.add(new Story("3"));
-		stories.add(new Story("7"));
-		return storyResourceAssembler.toResources(stories);
-	}
-
-	@RequestMapping(method = RequestMethod.GET)
-	@ResponseBody
-	public String test() {
-		return "It's alive";
+	public List<StoryResource> findStories(@PathVariable("iterationNumber") final Integer iterationNumber) {
+		return storyResourceAssembler.toResources(repository.findStoriesBy(iterationNumber));
 	}
 
 }
