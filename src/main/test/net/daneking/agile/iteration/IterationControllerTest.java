@@ -53,7 +53,7 @@ public class IterationControllerTest {
 	@Test
 	public void shouldReturnIterationResourceWhenFindByStoryIsCalled() {
 		setupIterationAssembler(5);
-		HttpEntity<IterationResource> response = controller.findByStory(5);
+		HttpEntity<IterationResource> response = controller.findByStory(4);
 		verify(resourceAssembler).toResource(isA(Iteration.class));
 
 	}
@@ -63,6 +63,7 @@ public class IterationControllerTest {
 		when(resourceAssembler.toResource(isA(Iteration.class))).thenReturn(resource);
 	}
 
+	@SuppressWarnings("unused")
 	private void setupStoryCreationMock(final Integer number, final int listSize) {
 		if (listSize > 0) {
 			List<Story> stories = new ArrayList<Story>();
