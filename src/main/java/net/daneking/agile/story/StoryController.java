@@ -18,13 +18,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping("/stories")
 public class StoryController {
 	@Autowired
 	private StoryResourceAssembler storyResourceAssembler;
 	@Autowired
 	StoryRepository repository;
 
-	@RequestMapping("story/{number}")
+	@RequestMapping("/{number}")
 	@ResponseBody
 	public HttpEntity<StoryResource> get(@PathVariable final Integer number) {
 		// lookup
@@ -42,7 +43,7 @@ public class StoryController {
 		return new ResponseEntity<Void>(headers, HttpStatus.CREATED);
 	}
 
-	@RequestMapping(value = "/iteration/{iterationNumber}/stories", method = RequestMethod.GET)
+	@RequestMapping(value = { "/iteration/{iterationNumber}" }, method = RequestMethod.GET)
 	@ResponseBody
 	public List<StoryResource> findStories(@PathVariable("iterationNumber") final Integer iterationNumber) {
 		return storyResourceAssembler.toResources(repository.findStoriesBy(iterationNumber));

@@ -17,14 +17,15 @@ public class StoryFunctionalTest {
 		StoryResource storyResource = new StoryResource();
 		storyResource.setName("dddd");
 		storyResource.setNumber(2);
-		ResponseEntity<Void> response = restTemplate.postForEntity(BASE_URI + "/story", storyResource, Void.class);
+		ResponseEntity<Void> response = restTemplate.postForEntity(BASE_URI + "/stories", storyResource, Void.class);
 		assertEquals(HttpStatus.CREATED, response.getStatusCode());
 	}
 
 	@Test
 	public void shouldReturnStoryResourceWhenGetStoryAndNumberCalled() {
 		RestTemplate restTemplate = new RestTemplate();
-		ResponseEntity<StoryResource> response = restTemplate.getForEntity(BASE_URI + "/story/5", StoryResource.class);
+		ResponseEntity<StoryResource> response = restTemplate
+				.getForEntity(BASE_URI + "/stories/5", StoryResource.class);
 		assertEquals(HttpStatus.OK, response.getStatusCode());
 		assertNotNull(response.getBody());
 	}

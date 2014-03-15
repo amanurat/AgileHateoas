@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -17,8 +18,10 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
-@RequestMapping("/iteration")
+@RequestMapping(value = "/iteration", produces = { MediaType.APPLICATION_JSON_VALUE,
+		IterationController.APPLICATION_HAL_JSON_VALUE })
 public class IterationController {
+	static final String APPLICATION_HAL_JSON_VALUE = "application/hal+json";
 	@Autowired
 	IterationResourceAssembler iterationResourceAssembler;
 	@Autowired
@@ -44,6 +47,14 @@ public class IterationController {
 	@RequestMapping(value = "", method = RequestMethod.GET)
 	@ResponseBody
 	public HttpEntity<IterationResource> findByStory(@RequestParam(value = "story") final Integer storyNumber) {
+		Integer number = 4;
+		IterationResource iteration = iterationResourceAssembler.toResource(new Iteration(number));
+		return new ResponseEntity<IterationResource>(iteration, HttpStatus.OK);
+	}
+
+	@RequestMapping(value = "/{number}/stories", method = RequestMethod.GET)
+	@ResponseBody
+	public HttpEntity<IterationResource> getAllStories() {
 		Integer number = 4;
 		IterationResource iteration = iterationResourceAssembler.toResource(new Iteration(number));
 		return new ResponseEntity<IterationResource>(iteration, HttpStatus.OK);
