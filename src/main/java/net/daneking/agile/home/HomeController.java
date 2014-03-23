@@ -1,6 +1,6 @@
 package net.daneking.agile.home;
 
-import org.springframework.http.HttpEntity;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
@@ -9,18 +9,17 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 @Controller
+@RequestMapping(value = "/")
 public class HomeController {
+	@Autowired
+	HomeResourceAssembler homeResourceAssembler;
 
-	@RequestMapping(value = "/", method = RequestMethod.GET)
+	@RequestMapping(method = RequestMethod.GET)
 	@ResponseBody
-	public HttpEntity<String> get() {
-		ResponseEntity<String> response = new ResponseEntity<String>(HttpStatus.OK);
+	public ResponseEntity<HomeResource> get() {
+		HomeResource body = homeResourceAssembler.toResource(new Home());
 
-		return response;
+		return new ResponseEntity<HomeResource>(body, HttpStatus.OK);
 
-	}
-
-	public HttpEntity<Void> create() {
-		return new ResponseEntity<Void>(HttpStatus.CREATED);
 	}
 }

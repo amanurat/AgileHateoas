@@ -53,7 +53,7 @@ public class IterationControllerTest {
 	@Test
 	public void shouldReturnIterationResourceWhenFindByStoryIsCalled() {
 		setupIterationAssembler(5);
-		HttpEntity<IterationResource> response = controller.findByStory(4);
+		controller.findByStory(4);
 		verify(resourceAssembler).toResource(isA(Iteration.class));
 
 	}
