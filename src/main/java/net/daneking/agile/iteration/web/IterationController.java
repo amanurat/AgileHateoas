@@ -1,7 +1,10 @@
-package net.daneking.agile.iteration;
+package net.daneking.agile.iteration.web;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
+
+import net.daneking.agile.iteration.Iteration;
+import net.daneking.agile.iteration.IterationRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;

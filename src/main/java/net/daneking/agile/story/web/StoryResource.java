@@ -1,4 +1,4 @@
-package net.daneking.agile.story;
+package net.daneking.agile.story.web;
 
 import org.apache.commons.lang3.builder.EqualsBuilder;
 import org.springframework.hateoas.ResourceSupport;

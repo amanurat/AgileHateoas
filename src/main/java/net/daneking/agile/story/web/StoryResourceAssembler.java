@@ -1,8 +1,9 @@
-package net.daneking.agile.story;
+package net.daneking.agile.story.web;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
-import net.daneking.agile.iteration.IterationController;
+import net.daneking.agile.iteration.web.IterationController;
+import net.daneking.agile.story.Story;
 
 import org.springframework.hateoas.mvc.ResourceAssemblerSupport;
 import org.springframework.stereotype.Component;

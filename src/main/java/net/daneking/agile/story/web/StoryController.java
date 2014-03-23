@@ -1,9 +1,12 @@
-package net.daneking.agile.story;
+package net.daneking.agile.story.web;
 
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.linkTo;
 import static org.springframework.hateoas.mvc.ControllerLinkBuilder.methodOn;
 
 import java.util.List;
+
+import net.daneking.agile.story.Story;
+import net.daneking.agile.story.StoryRepository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpEntity;

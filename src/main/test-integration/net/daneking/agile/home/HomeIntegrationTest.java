@@ -3,6 +3,7 @@ package net.daneking.agile.home;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.method;
 import static org.springframework.test.web.client.match.MockRestRequestMatchers.requestTo;
 import static org.springframework.test.web.client.response.MockRestResponseCreators.withSuccess;
+import net.daneking.agile.home.web.HomeController;
 import net.daneking.config.AppInitializer;
 import net.daneking.config.RepositoryConfig;
 import net.daneking.config.SpringConfig;

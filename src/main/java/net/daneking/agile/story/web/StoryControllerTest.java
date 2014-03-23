@@ -1,4 +1,4 @@
-package net.daneking.agile.story;
+package net.daneking.agile.story.web;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -7,6 +7,9 @@ import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
 import java.util.List;
+
+import net.daneking.agile.story.Story;
+import net.daneking.agile.story.StoryRepository;
 
 import org.junit.Before;
 import org.junit.Test;

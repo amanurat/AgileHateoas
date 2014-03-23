@@ -1,4 +1,4 @@
-package net.daneking.agile.iteration;
+package net.daneking.agile.iteration.web;
 
 import org.springframework.hateoas.ResourceSupport;
 

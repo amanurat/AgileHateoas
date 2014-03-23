@@ -1,4 +1,4 @@
-package net.daneking.agile.iteration;
+package net.daneking.agile.iteration.web;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
@@ -10,6 +10,8 @@ import static org.mockito.Mockito.when;
 import java.util.ArrayList;
 import java.util.List;
 
+import net.daneking.agile.iteration.Iteration;
+import net.daneking.agile.iteration.IterationRepository;
 import net.daneking.agile.story.Story;
 import net.daneking.agile.story.StoryRepository;
 

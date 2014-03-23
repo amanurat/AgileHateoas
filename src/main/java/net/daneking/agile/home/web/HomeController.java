@@ -1,4 +1,6 @@
-package net.daneking.agile.home;
+package net.daneking.agile.home.web;
+
+import net.daneking.agile.home.Home;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;

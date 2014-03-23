@@ -1,10 +1,14 @@
-package net.daneking.agile.home;
+package net.daneking.agile.home.web;
 
 import static org.hamcrest.CoreMatchers.equalTo;
 import static org.junit.Assert.assertThat;
 import static org.mockito.Matchers.isA;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
+
+import net.daneking.agile.home.Home;
+
+import net.daneking.agile.home.web.HomeController;
 
 import org.junit.Before;
 import org.junit.Test;

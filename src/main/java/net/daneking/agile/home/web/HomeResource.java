@@ -1,4 +1,4 @@
-package net.daneking.agile.home;
+package net.daneking.agile.home.web;
 
 import org.springframework.hateoas.ResourceSupport;
 
